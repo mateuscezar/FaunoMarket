@@ -1,0 +1,76 @@
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]eleases/
+[Rr]eleasesPublic/
+[Bb]in/
+[Oo]bj/
+
+# NuGet
+*.nupkg
+*.snupkg
+*.nuspec
+packages/
+*.dll
+*.exe
+*.pdb
+
+# User-specific files
+*.user
+*.userosscache
+*.suo
+*.sln.docstates
+
+# Rider
+.idea/
+
+# VS Code
+.vscode/
+
+# Mac
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# Log files
+*.log
+
+# Database files
+*.mdf
+*.ldf
+
+# Auto-generated files
+*.g.cs
+*.g.i.cs
+
+# Build results
+*/obj/
+*/bin/
+
+# Coverage results
+*.coverage
+*.coveragexml
+*.testresults
+
+# VS Code settings
+.vscode/
+
+# Dependency directories
+node_modules/
+bower_components/
+
+# JetBrains Rider
+.idea/
+
+# Local configuration files
+*.env
+*.local
+
+# Compiled static files
+wwwroot/css/
+wwwroot/js/

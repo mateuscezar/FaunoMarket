@@ -1,0 +1,6 @@
+@Fauno.Api_HostAddress = http://localhost:5221
+
+GET {{Fauno.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
