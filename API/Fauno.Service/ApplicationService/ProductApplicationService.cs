@@ -79,7 +79,7 @@ namespace Fauno.Service.ApplicationService
             return _uow.ProductCategoryRepository.GetByIdQueryable(categoryId).Any();
         }
 
-        private ActionResponse ValidateProduct(string name, decimal price, int stock)
+        public ActionResponse ValidateProduct(string name, decimal price, int stock)
         {
             if (string.IsNullOrWhiteSpace(name))
                 return ActionResponse.Fail("O nome do produto é obrigatório.");

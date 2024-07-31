@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fauno.Infrastructure", "Fau
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fauno.CrossCutting", "Fauno.CrossCutting\Fauno.CrossCutting.csproj", "{4938079A-5235-4376-A760-67B87D607944}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fauno.Tests", "Fauno.Tests\Fauno.Tests.csproj", "{DB8475B7-42E7-45C3-A180-E02062D9E467}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{4938079A-5235-4376-A760-67B87D607944}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4938079A-5235-4376-A760-67B87D607944}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4938079A-5235-4376-A760-67B87D607944}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB8475B7-42E7-45C3-A180-E02062D9E467}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB8475B7-42E7-45C3-A180-E02062D9E467}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB8475B7-42E7-45C3-A180-E02062D9E467}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB8475B7-42E7-45C3-A180-E02062D9E467}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

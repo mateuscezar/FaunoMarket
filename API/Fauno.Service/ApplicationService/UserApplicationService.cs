@@ -6,6 +6,7 @@ using Fauno.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography;
 using System.Text;
+using System.Xml.Linq;
 
 namespace Fauno.Service.ApplicationService
 {
@@ -19,6 +20,7 @@ namespace Fauno.Service.ApplicationService
         public async Task<ActionResponse> Create(UserDto dto)
         {
             if (!IsValidDto(dto)) return ActionResponse.Fail("Dados inválidos.");
+            if (!IsUniqueEmail(dto.Email)) return ActionResponse.Fail("Email já cadastrado.");
 
             var user = _mapper.Map<User>(dto);
 
@@ -30,9 +32,14 @@ namespace Fauno.Service.ApplicationService
             return ActionResponse.Ok();
         }
 
-        private bool IsValidDto(UserDto dto)
+        public bool IsValidDto(UserDto dto)
         {
             return dto != null && !string.IsNullOrWhiteSpace(dto.Name) && !string.IsNullOrWhiteSpace(dto.Email) && !string.IsNullOrWhiteSpace(dto.Password) && dto.DateOfBirth.Year > 1900;
+        }
+
+        private bool IsUniqueEmail(string email)
+        {
+            return !_uow.UserRepository.GetByEmail(email).Any();
         }
     }
 }
