@@ -1,0 +1,18 @@
+<app-layout-login
+  titleLayout="Acesse sua conta"
+  primaryBtnText="Entrar"
+  secondaryBtnText="Cadastrar"
+  (navigate)="navigate()"
+>
+  <form class="example-form" #loginForm="ngForm">
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput placeholder="fauno@gmail.com" name="email" ngModel>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Senha</mat-label>
+      <input matInput type="password" name="password" ngModel>
+    </mat-form-field>
+  </form>
+</app-layout-login>

@@ -1,4 +1,15 @@
-/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+@include mat.core();
+
+.mat-form-field-appearance-outline.mat-focused .mat-form-field-outline {
+    .mat-form-field-outline-thick {
+      border-color: red; /* Cor desejada */
+    }
+  }
+  
+  .mat-form-field-appearance-fill.mat-focused .mat-form-field-flex {
+    background-color: #e3f2fd; /* Cor de fundo desejada */
+  }
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
