@@ -34,7 +34,7 @@ namespace Fauno.Service.ApplicationService
 
         public bool IsValidDto(UserDto dto)
         {
-            return dto != null && !string.IsNullOrWhiteSpace(dto.Name) && !string.IsNullOrWhiteSpace(dto.Email) && !string.IsNullOrWhiteSpace(dto.Password) && dto.DateOfBirth.Year > 1900;
+            return dto != null && !string.IsNullOrWhiteSpace(dto.Name) && !string.IsNullOrWhiteSpace(dto.Email) && !string.IsNullOrWhiteSpace(dto.Password);
         }
 
         private bool IsUniqueEmail(string email)

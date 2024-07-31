@@ -5,7 +5,6 @@ GO
 CREATE TABLE [user] (
     Id INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
     Name VARCHAR(255) NOT NULL,
-    DateOfBirth DATETIME NOT NULL,
     Email VARCHAR(255) NOT NULL,
     PasswordHash VARCHAR(255) NOT NULL
 );
@@ -26,7 +25,7 @@ CREATE TABLE [product] (
 );
 GO
 
-INSERT INTO [user] (Name, DateOfBirth, Email, PasswordHash) VALUES ('Admin', '1995-02-17', 'admin@fauno.com', '21232f297a57a5a743894a0e4a801fc3');
+INSERT INTO [user] (Name, Email, PasswordHash) VALUES ('Admin', 'admin@fauno.com', '21232f297a57a5a743894a0e4a801fc3');
 GO
 INSERT INTO product_category (Name) VALUES ('Bebidas');
 INSERT INTO product_category (Name) VALUES ('Carnes e Frios');

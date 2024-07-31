@@ -10,7 +10,6 @@ namespace Fauno.Infrastructure.Contexts.Map
         {
             builder.HasKey(e => e.Id);
             builder.Property(e => e.Name).IsRequired().HasMaxLength(255);
-            builder.Property(e => e.DateOfBirth).IsRequired();
             builder.Property(e => e.Email).IsRequired().HasMaxLength(255);
             builder.Property(e => e.PasswordHash).IsRequired().HasMaxLength(255);
         }

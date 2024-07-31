@@ -21,7 +21,6 @@ public class UserApplicationServiceTest
             Name = "John Doe",
             Email = "john.doe@example.com",
             Password = "password123",
-            DateOfBirth = new DateTime(1990, 1, 1)
         };
 
         var result = _service.IsValidDto(dto);
@@ -45,7 +44,6 @@ public class UserApplicationServiceTest
             Name = "",
             Email = "john.doe@example.com",
             Password = "password123",
-            DateOfBirth = new DateTime(1990, 1, 1)
         };
 
         var result = _service.IsValidDto(dto);
@@ -61,7 +59,6 @@ public class UserApplicationServiceTest
             Name = "John Doe",
             Email = "",
             Password = "password123",
-            DateOfBirth = new DateTime(1990, 1, 1)
         };
 
         var result = _service.IsValidDto(dto);
@@ -77,43 +74,10 @@ public class UserApplicationServiceTest
             Name = "John Doe",
             Email = "john.doe@example.com",
             Password = "",
-            DateOfBirth = new DateTime(1990, 1, 1)
         };
 
         var result = _service.IsValidDto(dto);
 
         Assert.False(result);
-    }
-
-    [Fact]
-    public void IsValidDto_InvalidDateOfBirth_ReturnsFalse()
-    {
-        var dto = new UserDto
-        {
-            Name = "John Doe",
-            Email = "john.doe@example.com",
-            Password = "password123",
-            DateOfBirth = new DateTime(1900, 1, 1)
-        };
-
-        var result = _service.IsValidDto(dto);
-
-        Assert.False(result);
-    }
-
-    [Fact]
-    public void IsValidDto_ValidDateOfBirth_ReturnsTrue()
-    {
-        var dto = new UserDto
-        {
-            Name = "John Doe",
-            Email = "john.doe@example.com",
-            Password = "password123",
-            DateOfBirth = new DateTime(1991, 1, 1)
-        };
-
-        var result = _service.IsValidDto(dto);
-
-        Assert.True(result);
     }
 }
