@@ -32,7 +32,7 @@ namespace Fauno.Service.ApplicationService
 
         private bool IsValidDto(UserDto dto)
         {
-            return dto != null && !string.IsNullOrWhiteSpace(dto.Name) && !string.IsNullOrWhiteSpace(dto.Email) && !string.IsNullOrWhiteSpace(dto.Password);
+            return dto != null && !string.IsNullOrWhiteSpace(dto.Name) && !string.IsNullOrWhiteSpace(dto.Email) && !string.IsNullOrWhiteSpace(dto.Password) && dto.DateOfBirth.Year > 1900;
         }
     }
 }
