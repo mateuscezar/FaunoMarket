@@ -8,7 +8,18 @@ export class HttpBaseUrlInterceptor implements HttpInterceptor {
   constructor() { }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const apiReq = req.clone({ url: `${this.baseUrl}${req.url}` });
-    console.log('Intercepted request URL:', apiReq.url); // Adicione logs para depuração
+
+    const token = sessionStorage.getItem('auth-token');
+    if (token) {
+    const authReq = req.clone({
+            url: `${this.baseUrl}${req.url}`,
+            setHeaders: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        return next.handle(authReq);
+    }
+
     return next.handle(apiReq);
   }
 }

@@ -2,6 +2,7 @@ CREATE DATABASE fauno;
 GO
 USE fauno;
 GO
+
 CREATE TABLE [user] (
     Id INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
     Name VARCHAR(255) NOT NULL,
@@ -9,11 +10,14 @@ CREATE TABLE [user] (
     PasswordHash VARCHAR(255) NOT NULL
 );
 GO
+
 CREATE TABLE product_category (
     Id INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+    Icon VARCHAR(100) NOT NULL,
     Name VARCHAR(255) NOT NULL
 );
 GO
+
 CREATE TABLE [product] (
     Id INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
     Name VARCHAR(255) NOT NULL,
@@ -27,17 +31,19 @@ GO
 
 INSERT INTO [user] (Name, Email, PasswordHash) VALUES ('Admin', 'admin@fauno.com', '21232f297a57a5a743894a0e4a801fc3');
 GO
-INSERT INTO product_category (Name) VALUES ('Bebidas');
-INSERT INTO product_category (Name) VALUES ('Carnes e Frios');
-INSERT INTO product_category (Name) VALUES ('Hortifruti');
-INSERT INTO product_category (Name) VALUES ('Padaria e Confeitaria');
-INSERT INTO product_category (Name) VALUES ('Laticínios');
-INSERT INTO product_category (Name) VALUES ('Mercearia');
-INSERT INTO product_category (Name) VALUES ('Limpeza');
-INSERT INTO product_category (Name) VALUES ('Higiene Pessoal');
-INSERT INTO product_category (Name) VALUES ('Congelados');
-INSERT INTO product_category (Name) VALUES ('Pet Shop');
+
+INSERT INTO product_category (Icon, Name) VALUES ('local_drink', 'Bebidas');
+INSERT INTO product_category (Icon, Name) VALUES ('restaurant_menu', 'Carnes e Frios');
+INSERT INTO product_category (Icon, Name) VALUES ('grass', 'Hortifruti');
+INSERT INTO product_category (Icon, Name) VALUES ('bakery_dining', 'Padaria e Confeitaria');
+INSERT INTO product_category (Icon, Name) VALUES ('local_pizza', 'Laticínios');
+INSERT INTO product_category (Icon, Name) VALUES ('shopping_basket', 'Mercearia');
+INSERT INTO product_category (Icon, Name) VALUES ('cleaning_services', 'Limpeza');
+INSERT INTO product_category (Icon, Name) VALUES ('face', 'Higiene Pessoal');
+INSERT INTO product_category (Icon, Name) VALUES ('ac_unit', 'Congelados');
+INSERT INTO product_category (Icon, Name) VALUES ('pets', 'Pet Shop');
 GO
+
 INSERT INTO product (Name, Description, Price, StockQuantity, CategoryId) VALUES ('Coca-Cola 2L', 'Refrigerante de cola', 7.99, 100, 1);
 INSERT INTO product (Name, Description, Price, StockQuantity, CategoryId) VALUES ('Bife de Alcatra', 'Corte de carne bovina', 29.99, 50, 2);
 INSERT INTO product (Name, Description, Price, StockQuantity, CategoryId) VALUES ('Tomate', 'Tomate fresco', 4.99, 200, 3);
@@ -48,4 +54,4 @@ INSERT INTO product (Name, Description, Price, StockQuantity, CategoryId) VALUES
 INSERT INTO product (Name, Description, Price, StockQuantity, CategoryId) VALUES ('Shampoo 400ml', 'Shampoo para cabelos', 12.99, 75, 8);
 INSERT INTO product (Name, Description, Price, StockQuantity, CategoryId) VALUES ('Pizza Congelada', 'Pizza de queijo congelada', 14.99, 60, 9);
 INSERT INTO product (Name, Description, Price, StockQuantity, CategoryId) VALUES ('Ração para Cães 10kg', 'Ração seca para cães adultos', 79.99, 40, 10);
-
+GO

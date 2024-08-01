@@ -1,9 +1,27 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { catchError, map, tap, throwError } from 'rxjs';
+import { ActionResponse, LoginResponse } from '../../types/login-response.types';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
-  constructor() { }
+  constructor(private httpClient: HttpClient, private toastService: ToastrService) { }
+
+  getCategories() {
+    return this.httpClient.get<ActionResponse>("/productcategory").pipe(
+      map(value => {
+        if (!value.success) {
+          throw new Error(value.message || 'Erro desconhecido');
+        }
+        return value.data;
+      }),
+      catchError(error => {
+        return throwError(() => new Error(!!error?.error?.Message ? error?.error?.Message : (!!error.message ? error.message : 'Erro desconhecido')));
+      })
+    );
+  }
 }
