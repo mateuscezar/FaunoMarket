@@ -1,0 +1,59 @@
+  @import '../../styles/variables.scss';
+  
+  body {
+    background: #F5F5F5;
+  }
+
+  .header {
+    background: #935945;
+    color: $gray-bg;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 1rem;
+
+    div.logo img {
+        width: 100px;
+        padding: 0px 1rem 0px 0px;
+    }
+
+    div.search {
+
+        width: 50rem;
+        height: 80px;
+        margin: 0px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .mat-mdc-form-field {
+            display: flex;
+            margin: 0px;
+            padding: 0px;
+            flex-grow: 1;
+            height: 56px;
+            border-radius: 5px;
+            background-color: $gray-bg;
+        }
+
+        .closeSearch {
+            color: #935945;
+        }
+
+    }
+
+    div.icons {
+        display: flex;
+        width: 20rem;
+            padding: 0rem 0rem 0rem 1rem;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+  }
+  
+  .main-content {
+    padding: 2rem;
+    height: 100%;
+    flex: 1;
+    background: $gray-bg;
+  }
