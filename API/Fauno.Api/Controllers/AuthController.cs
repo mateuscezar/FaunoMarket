@@ -16,7 +16,7 @@ namespace Fauno.Api.Controllers
             _appService = appService;
         }
 
-        [HttpPost("token")]
+        [HttpPost("login")]
         [AllowAnonymous]
         public async Task<IResult> Token([FromBody] AuthTokenDto authDto)
         {

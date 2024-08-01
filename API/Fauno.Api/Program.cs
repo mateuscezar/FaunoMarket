@@ -42,11 +42,8 @@ var app = builder.Build();
         app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Fauno API v1"));
         app.UseDeveloperExceptionPage();
     }
-    else
-    {
-        app.UseDomainErrorHandler();
-    }
 
+    app.UseDomainErrorHandler();
     app.UseRouting();
     app.UseCors(x => x
         .AllowAnyOrigin()

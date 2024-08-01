@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ToastrService } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';  // Importando CommonModule
+import { LoginService } from '../../services/login/login.service';
 
 @Component({
   selector: 'app-signup',
@@ -20,7 +21,7 @@ export class SignupComponent {
   @ViewChild('signupForm') signupForm!: NgForm;
   formSubmitted = false;
 
-  constructor(private router: Router, private toastService: ToastrService) {}
+  constructor(private router: Router, private loginService: LoginService, private toastService: ToastrService) {}
 
   ngAfterViewInit() {
     this.signupForm.control.setValidators(this.passwordMatchValidator);
@@ -43,15 +44,22 @@ export class SignupComponent {
     if (this.signupForm.valid && !this.signupForm.hasError('passwordMismatch')) {
       const nome = this.signupForm.value['nome'];
       const email = this.signupForm.value['email'];
-      this.toastService.info('signup');
-      console.log('Nome:', nome);
-      console.log('Email:', email);
-      // this.signupService.signup(nome, email, this.signupForm.value['password']).subscribe({
-      //   next: () => this.toastService.success("Cadastro feito com sucesso!"),
-      //   error: () => this.toastService.error("Erro inesperado! Tente novamente mais tarde")
-      // });
+      const password = this.signupForm.value['password'];
+
+      this.loginService
+      .signup(nome, email, password)
+      .subscribe({
+        next: () => {
+          this.router.navigate(["login"]);
+          this.toastService.success('Cadastro com sucesso!');
+        },
+        error: (error) =>
+          this.toastService.error(
+            error.message ?? 'Erro inesperado! Tente novamente mais tarde'
+          ),
+      });
     } else {
-      this.toastService.error('Formulário inválido');
+      this.toastService.error('Preencha seus dados corretamente.');
       this.markFormControlsAsTouched();
     }
   }
