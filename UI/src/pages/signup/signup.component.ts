@@ -3,29 +3,66 @@ import { LayoutLoginComponent } from '../../components/layout-login/layout-login
 import { Router } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm, NgModel, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { NgForm } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import { CommonModule } from '@angular/common';  // Importando CommonModule
 
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [LayoutLoginComponent, MatIconModule, MatButtonModule, FormsModule, MatInputModule, MatFormFieldModule],
+  imports: [CommonModule, LayoutLoginComponent, MatIconModule, MatButtonModule, FormsModule, MatInputModule, MatFormFieldModule],
   templateUrl: './signup.component.html',
-  styleUrl: './signup.component.scss'
+  styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent {
   @ViewChild('signupForm') signupForm!: NgForm;
+  formSubmitted = false;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private toastService: ToastrService) {}
 
-  navigate(){
-    const nome = this.signupForm.value.nome;
-      const email = this.signupForm.value.email;
-      console.log('nome:', nome);
-      console.log('email:', email);
-    this.router.navigate(["login"])
+  ngAfterViewInit() {
+    this.signupForm.control.setValidators(this.passwordMatchValidator);
+  }
+
+  passwordMatchValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+    const password = control.get('password');
+    const passwordConfirm = control.get('passwordConfirm');
+    if (password && passwordConfirm && password.value !== passwordConfirm.value) {
+      passwordConfirm.setErrors({ passwordMismatch: true });
+      return { passwordMismatch: true };
+    } else {
+      return null;
+    }
+  };
+
+  submit() {
+    this.formSubmitted = true;
+
+    if (this.signupForm.valid && !this.signupForm.hasError('passwordMismatch')) {
+      const nome = this.signupForm.value['nome'];
+      const email = this.signupForm.value['email'];
+      this.toastService.info('signup');
+      console.log('Nome:', nome);
+      console.log('Email:', email);
+      // this.signupService.signup(nome, email, this.signupForm.value['password']).subscribe({
+      //   next: () => this.toastService.success("Cadastro feito com sucesso!"),
+      //   error: () => this.toastService.error("Erro inesperado! Tente novamente mais tarde")
+      // });
+    } else {
+      this.toastService.error('Formulário inválido');
+      this.markFormControlsAsTouched();
+    }
+  }
+
+  navigate() {
+    this.router.navigate(["login"]);
+  }
+
+  private markFormControlsAsTouched() {
+    Object.keys(this.signupForm.controls).forEach(key => {
+      this.signupForm.controls[key].markAsTouched();
+    });
   }
 }
-

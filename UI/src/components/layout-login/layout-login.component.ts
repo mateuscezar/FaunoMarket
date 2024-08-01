@@ -15,13 +15,12 @@ export class LayoutLoginComponent {
   @Output("submit") onSubmit = new EventEmitter();
   @Output("navigate") onNavigate = new EventEmitter();
 
+
   submit(){
-    console.log('Submit');
     this.onSubmit.emit();
   }
 
   navigate(){
-    console.log('Navigate');
     this.onNavigate.emit();
   }
 }
