@@ -43,6 +43,25 @@ namespace Fauno.Service.ApplicationService
             return ActionResponse<ProductDto>.Ok(productDto);
         }
 
+        public ActionResponse<List<ProductDto>> GetAll()
+        {
+            var products = _uow.ProductRepository.GetAll().Select(x => new ProductDto
+            {
+                Name = x.Name,
+                Price = x.Price,
+                StockQuantity = x.StockQuantity,
+                CategoryId = x.CategoryId,
+                Description = x.Description,
+                CategoryName = x.Category.Name,
+                CategoryIcon = x.Category.Icon
+            }).ToList();
+
+            if (!products.Any()) return ActionResponse<List<ProductDto>>.Fail("Nenhum produto cadastrado.");
+
+
+            return ActionResponse<List<ProductDto>>.Ok(products);
+        }
+
         public async Task<ActionResponse> Update(ProductPutDto dto)
         {
             VerifyExists(dto, "Dados");

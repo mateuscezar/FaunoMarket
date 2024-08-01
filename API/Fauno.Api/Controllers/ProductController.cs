@@ -24,8 +24,14 @@ namespace Fauno.Api.Controllers
             return await _appService.Create(dto);
         }
 
+        [HttpGet]
+        public ActionResponse<List<ProductDto>> GetAll()
+        {
+            return _appService.GetAll();
+        }
+
         [HttpGet("{productId}")]
-        public ActionResponse<ProductDto> Get([FromRoute] int productId)
+        public ActionResponse<ProductDto> GetById([FromRoute] int productId)
         {
             return _appService.Get(productId);
         }

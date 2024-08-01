@@ -13,5 +13,7 @@ namespace Fauno.CrossCutting.DTO.Product
         public decimal Price { get; set; }
         public int StockQuantity { get; set; }
         public int CategoryId { get; set; }
+        public string CategoryName { get; set; }
+        public string CategoryIcon { get; set; }
     }
 }
