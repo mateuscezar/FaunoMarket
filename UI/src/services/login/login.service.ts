@@ -15,6 +15,8 @@ export class LoginService {
     return this.httpClient.post<LoginResponse>("/auth/login", { email, password }).pipe(
       tap((value) => {
         sessionStorage.setItem("auth-token", value.token);
+        sessionStorage.setItem("auth-name", value.name);
+        sessionStorage.setItem("auth-email", value.email);
       }),
       catchError(error => {
         return throwError(() => new Error(error?.error?.Message || 'Erro desconhecido'));
