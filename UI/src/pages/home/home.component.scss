@@ -42,5 +42,6 @@ body {
     filter: drop-shadow(2px 4px 6px gray);
     background-color: darken($primary-color, 10%);
     cursor: pointer;
+    transform: scale(1.08);
   }
 }
