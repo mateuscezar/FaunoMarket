@@ -23,6 +23,10 @@
   }
 }
 
+.category-item.selected {
+  border-bottom: 2px solid $title-color;
+}
+
 .category-item mat-icon {
   margin-right: 0.5rem;
 }

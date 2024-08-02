@@ -24,10 +24,10 @@ namespace Fauno.Api.Controllers
             return await _appService.Create(dto);
         }
 
-        [HttpGet]
-        public ActionResponse<List<ProductDto>> GetAll()
+        [HttpPost("filter")]
+        public ActionResponse<List<ProductDto>> Filter([FromBody] ProductFilterDto filter)
         {
-            return _appService.GetAll();
+            return _appService.ApplyFilter(filter);
         }
 
         [HttpGet("{productId}")]

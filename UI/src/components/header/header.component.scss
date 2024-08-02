@@ -13,18 +13,18 @@
     padding-right: 1rem;
   }
 
-  div.search {
+  .search {
     width: 50rem;
     height: 80px;
-    margin: 0px;
+    margin: 0;
     display: flex;
     align-items: center;
     justify-content: center;
 
     .mat-mdc-form-field {
       display: flex;
-      margin: 0px;
-      padding: 0px;
+      margin: 0;
+      padding: 0;
       flex-grow: 1;
       height: 56px;
       border-radius: 5px;
@@ -41,12 +41,26 @@
     }
   }
 
-  div.icons {
+  .icons {
     display: flex;
     padding-left: 1rem;
     align-items: center;
     justify-content: space-evenly;
     color: #fff;
     font-size: 12px;
+  }
+
+  .welcome-text {
+    margin-right: 1rem;
+  }
+
+  .logout-button {
+    margin-left: 1rem;
+  }
+
+  @media (max-width: 600px) {
+    .welcome-text {
+      display: none;
+    }
   }
 }

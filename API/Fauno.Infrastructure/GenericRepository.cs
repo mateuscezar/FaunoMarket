@@ -82,23 +82,5 @@ namespace Fauno.Infrastructure
         {
             _dbSet.AddRange(entities);
         }
-
-        public IEnumerable<TEntity> Get(Func<TEntity, bool> predicate) => _dbSet.Where(predicate);
-
-        public IEnumerable<TEntity> Get(Func<TEntity, bool> predicate, out int totalRecords, int page = 1,
-            int qtdRecords = int.MaxValue)
-        {
-            var result = _dbSet.Where(predicate).AsQueryable();
-            totalRecords = _entities.Set<TEntity>().Count(predicate);
-            ApplyPagination(ref result, page, qtdRecords);
-            return result;
-        }
-
-        protected static void ApplyPagination(ref IQueryable<TEntity> query, int? page, int? qtdRecords)
-        {
-            if (page.HasValue && qtdRecords.HasValue)
-                query = query.Skip((page.Value - 1) * qtdRecords.Value)
-                    .Take(qtdRecords.Value);
-        }
     }
 }

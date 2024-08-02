@@ -16,10 +16,6 @@ import { HeaderComponent } from '../../components/header/header.component';
   standalone: true,
   imports: [
     CommonModule,
-    MatInputModule,
-    MatButtonModule,
-    MatIconModule,
-    MatTooltipModule,
     ProductComponent,
     CategoryComponent,
     HeaderComponent

@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject, map, take } from 'rxjs';
-import { Product } from '../types/home.types';
+import { Product, ProductFilter } from '../types/home.types';
 import { ProductService } from '../services/product/product.service';
 
 @Injectable({
@@ -9,9 +9,13 @@ import { ProductService } from '../services/product/product.service';
 export class ProductStateService {
   private products$ = new BehaviorSubject<Product[]>([]);
   private productService = inject(ProductService);
+  private filter: ProductFilter = {
+    name: '',
+    categoryId: 0,
+  }
 
   loadProducts() {
-    this.productService.getProducts().pipe(take(1)).subscribe(products => this.setProducts(products));
+    this.productService.getProducts(this.filter).pipe(take(1)).subscribe(products => this.setProducts(products));
   }
 
   private setProducts(products: Product[]) {
@@ -20,6 +24,16 @@ export class ProductStateService {
 
   getProducts() {
     return this.products$.pipe();
+  }
+
+  filterName(name: string) {
+    this.filter.name = name;
+    this.loadProducts();
+  }
+
+  filterCategory(categoryId?: number) {
+    this.filter.categoryId = categoryId;
+    this.loadProducts();
   }
 
   addProduct(product: Product) {

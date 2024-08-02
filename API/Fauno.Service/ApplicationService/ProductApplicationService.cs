@@ -43,9 +43,9 @@ namespace Fauno.Service.ApplicationService
             return ActionResponse<ProductDto>.Ok(productDto);
         }
 
-        public ActionResponse<List<ProductDto>> GetAll()
+        public ActionResponse<List<ProductDto>> ApplyFilter(ProductFilterDto filter)
         {
-            var products = _uow.ProductRepository.GetAll().Select(x => new ProductDto
+            var productsQuery = _uow.ProductRepository.GetAll().Select(x => new ProductDto
             {
                 Id = x.Id,
                 Name = x.Name,
@@ -55,10 +55,15 @@ namespace Fauno.Service.ApplicationService
                 Description = x.Description,
                 CategoryName = x.Category.Name,
                 CategoryIcon = x.Category.Icon
-            }).ToList();
+            }).AsQueryable();
 
-            if (!products.Any()) return ActionResponse<List<ProductDto>>.Fail("Nenhum produto cadastrado.");
+            if (!string.IsNullOrEmpty(filter.Name))
+                productsQuery = productsQuery.Where(x => x.Name.Contains(filter.Name));
 
+            if (filter.CategoryId > 0)
+                productsQuery = productsQuery.Where(x => x.CategoryId == filter.CategoryId);
+
+            var products = productsQuery.ToList();
 
             return ActionResponse<List<ProductDto>>.Ok(products);
         }

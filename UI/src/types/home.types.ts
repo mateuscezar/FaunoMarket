@@ -2,6 +2,7 @@ export type Category = {
     id: number;
     name: string;
     icon: string;
+    selected: boolean;
 };
 
 export type Product = {
@@ -13,4 +14,9 @@ export type Product = {
     categoryId: number;
     categoryName: string;
     categoryIcon: string;
+};
+
+export type ProductFilter = {
+    name?: string;
+    categoryId?: number;
 };

@@ -18,6 +18,16 @@ export class CategoryStateService {
     this.categories$.next(categories);
   }
 
+  selectCategory(selectedCategory: Category) {
+    const updatedCategories = this.categories$.value.map(category => {
+      if (category.id === selectedCategory.id) {
+        return { ...category, selected: !category.selected };
+      }
+      return { ...category, selected: false };
+    });
+    this.categories$.next(updatedCategories);
+  }
+
   getCategory() {
     return this.categories$.pipe();
   }
