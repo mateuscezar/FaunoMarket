@@ -8,18 +8,38 @@
   <form class="example-form" #loginForm="ngForm">
     <mat-form-field>
       <mat-label>Email</mat-label>
-      <input matInput placeholder="fauno@gmail.com" name="email" ngModel required email maxlength="150">
-      <mat-error *ngIf="loginForm.controls['email']?.invalid && (loginForm.controls['email']?.touched || formSubmitted)">
-        Email é obrigatório e deve ser válido
-      </mat-error>
+      <input
+        matInput
+        placeholder="fauno@gmail.com"
+        name="email"
+        ngModel
+        required
+        email
+        maxlength="150"
+      />
+      @if (loginForm.controls['email'].invalid &&
+      (loginForm.controls['email'].touched || formSubmitted)) {
+      <mat-error> Email é obrigatório e deve ser válido </mat-error>
+      }
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Senha</mat-label>
-      <input matInput type="password" name="password" ngModel required minlength="6" maxlength="150">
-      <mat-error *ngIf="loginForm.controls['password']?.invalid && (loginForm.controls['password']?.touched || formSubmitted)">
+      <input
+        matInput
+        type="password"
+        name="password"
+        ngModel
+        required
+        minlength="6"
+        maxlength="150"
+      />
+      @if (loginForm.controls['password'].invalid &&
+      (loginForm.controls['password'].touched || formSubmitted)) {
+      <mat-error>
         Senha é obrigatória e deve ter no mínimo 6 caracteres
       </mat-error>
+      }
     </mat-form-field>
   </form>
 </app-layout-login>

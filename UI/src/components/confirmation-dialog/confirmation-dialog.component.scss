@@ -1,0 +1,67 @@
+@import "../../styles/variables.scss";
+
+.dialog-container {
+  padding: 1rem;
+  text-align: center;
+  background-color: $dialog-background-color;
+  border-radius: 8px;
+}
+
+.mat-dialog-title {
+  color: $primary-color;
+  font-weight: bold;
+}
+
+.mat-dialog-content {
+  margin-top: 1rem;
+  color: $text-color;
+}
+
+.mat-dialog-actions {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+button {
+  min-width: 100px;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+button {
+    min-width: 100px;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 14px;
+    border: none;
+    background-color: white;
+    color: $default-color;
+  }
+  
+  button[color="primary"] {
+    background-color: $primary-color;
+    color: $gray-bg;
+  }
+  
+  button[color="primary"]:hover {
+    background-color: darken($primary-color, 10%);
+  }
+
+  button:hover {
+    cursor: pointer;
+    background-color: $gray-bg;
+  }
+
+  .area-dialog-actions {
+    display: inline-flex;
+    gap: 1rem;
+  }
+
+  .buttons-text-effect {
+    font-weight: 550;
+    letter-spacing: 1px;
+    font-size: 12px;
+    padding: 1rem;
+  }

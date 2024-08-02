@@ -7,7 +7,7 @@
       <input
         type="search"
         name="search"
-        placeholder="Buscar Produtos..."
+        placeholder="Buscar Produto"
         aria-label="Buscar"
         matInput
       />
@@ -21,36 +21,21 @@
 
 <main class="main-content">
   <div class="category-container">
-    <div *ngFor="let category of categories" class="category-item">
+    @for (category of categories; track $index) {
+    <div class="category-item">
       <mat-icon>{{ category.icon }}</mat-icon>
       <span>{{ category.name }}</span>
     </div>
+    }
+    @empty {
+      <p>Nenhuma categoria cadastrada.</p>
+    }
   </div>
 
   <hr />
 
-  <div class="card-container">
-    <mat-card *ngFor="let product of products" class="product-card">
-      <mat-card-header>
-        <div class="action-buttons">
-          <button mat-icon-button matTooltip="Editar" class="edit-button">
-            <mat-icon>edit</mat-icon>
-          </button>
-          <button mat-icon-button matTooltip="Excluir" class="delete-button">
-            <mat-icon>close</mat-icon>
-          </button>
-        </div>
-        <mat-card-title>{{ product.name }}</mat-card-title>
-        <mat-card-subtitle>
-          <mat-icon>{{ product.categoryIcon }}</mat-icon>
-          {{ product.categoryName }}
-        </mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
-        <p>{{ product.description }}</p>
-        <p>Preço: {{ product.price | currency : "BRL" }}</p>
-        <p>Quantidade em Estoque: {{ product.stockQuantity }}</p>
-      </mat-card-content>
-    </mat-card>
-  </div>
+  <!-- Demonstrar efetividade do defer controlando lazyloading -->
+  <!-- <div class="banner">BANNER</div> -->
+
+  <app-product />
 </main>

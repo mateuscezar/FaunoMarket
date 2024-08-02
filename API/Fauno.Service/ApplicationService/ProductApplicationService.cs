@@ -47,6 +47,7 @@ namespace Fauno.Service.ApplicationService
         {
             var products = _uow.ProductRepository.GetAll().Select(x => new ProductDto
             {
+                Id = x.Id,
                 Name = x.Name,
                 Price = x.Price,
                 StockQuantity = x.StockQuantity,

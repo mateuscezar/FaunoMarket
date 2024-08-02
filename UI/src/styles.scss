@@ -2,12 +2,14 @@
 @include mat.core();
 
 @import 'ngx-toastr/toastr';
+@import './styles/variables.scss';
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-size: 12px;
 }
 
-html, body { height: 100%; }
+html, body { height: 100%; color: $default-color; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

@@ -8,37 +8,74 @@
   <form #signupForm="ngForm">
     <mat-form-field>
       <mat-label>Nome</mat-label>
-      <input matInput placeholder="Fauno da Silva" name="nome" ngModel required maxlength="150">
-      <mat-error *ngIf="signupForm.controls['nome']?.invalid && (signupForm.controls['nome']?.touched || formSubmitted)">
-        Nome é obrigatório
-      </mat-error>
+      <input
+        matInput
+        placeholder="Fauno da Silva"
+        name="nome"
+        ngModel
+        required
+        maxlength="150"
+      />
+      @if (signupForm.controls['nome'].invalid &&
+      (signupForm.controls['nome'].touched || formSubmitted)) {
+      <mat-error> Nome é obrigatório </mat-error>
+      }
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Email</mat-label>
-      <input matInput placeholder="fauno@gmail.com" name="email" ngModel required email maxlength="150">
-      <mat-error *ngIf="signupForm.controls['email']?.invalid && (signupForm.controls['email']?.touched || formSubmitted)">
-        Email é obrigatório e deve ser válido
-      </mat-error>
+      <input
+        matInput
+        placeholder="fauno@gmail.com"
+        name="email"
+        ngModel
+        required
+        email
+        maxlength="150"
+      />
+      @if (signupForm.controls['email'].invalid &&
+      (signupForm.controls['email'].touched || formSubmitted)) {
+      <mat-error> Email é obrigatório e deve ser válido </mat-error>
+      }
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Senha</mat-label>
-      <input matInput type="password" name="password" ngModel required minlength="6" maxlength="150">
-      <mat-error *ngIf="signupForm.controls['password']?.invalid && (signupForm.controls['password']?.touched || formSubmitted)">
+      <input
+        matInput
+        type="password"
+        name="password"
+        ngModel
+        required
+        minlength="6"
+        maxlength="150"
+      />
+      @if (signupForm.controls['password'].invalid &&
+      (signupForm.controls['password'].touched || formSubmitted)) {
+      <mat-error>
         Senha é obrigatória e deve ter no mínimo 6 caracteres
       </mat-error>
+      }
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Confirmar Senha</mat-label>
-      <input matInput type="password" name="passwordConfirm" ngModel required maxlength="150">
-      <mat-error *ngIf="signupForm.controls['passwordConfirm']?.invalid && !signupForm.controls['passwordConfirm']?.value && (signupForm.controls['passwordConfirm']?.touched || formSubmitted)">
-        Confirmação de senha é obrigatória
-      </mat-error>
-      <mat-error *ngIf="signupForm.controls['passwordConfirm']?.touched && signupForm.controls['passwordConfirm']?.hasError('passwordMismatch')">
-        As senhas não coincidem
-      </mat-error>
+      <input
+        matInput
+        type="password"
+        name="passwordConfirm"
+        ngModel
+        required
+        maxlength="150"
+      />
+      @if (signupForm.controls['passwordConfirm'].invalid &&
+      !signupForm.controls['passwordConfirm'].value &&
+      (signupForm.controls['passwordConfirm'].touched || formSubmitted)) {
+      <mat-error> Confirmação de senha é obrigatória </mat-error>
+      } @if (signupForm.controls['passwordConfirm'].touched &&
+      signupForm.controls['passwordConfirm'].hasError('passwordMismatch')) {
+      <mat-error> As senhas não coincidem </mat-error>
+      }
     </mat-form-field>
   </form>
 </app-layout-login>
