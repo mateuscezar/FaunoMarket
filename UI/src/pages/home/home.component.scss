@@ -24,3 +24,23 @@ body {
   flex: 1;
   background: $gray-bg;
 }
+
+.floating-action-button {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  color: white; /* Cor do ícone */
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Sombra */
+  z-index: 1000; 
+  background-color: $primary-color;
+  border: none;
+  border-radius: 50%;
+  padding: 1rem;
+  transition: all 0.4s ease;
+
+  &:hover {
+    filter: drop-shadow(2px 4px 6px gray);
+    background-color: darken($primary-color, 10%);
+    cursor: pointer;
+  }
+}

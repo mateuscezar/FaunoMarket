@@ -19,7 +19,7 @@ namespace Fauno.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResponse> Create([FromBody] ProductDto dto)
+        public async Task<ActionResponse> Create([FromBody] ProductCreateDto dto)
         {
             return await _appService.Create(dto);
         }

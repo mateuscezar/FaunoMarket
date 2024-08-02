@@ -2,6 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject, map, take } from 'rxjs';
 import { Product, ProductFilter } from '../types/home.types';
 import { ProductService } from '../services/product/product.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root',
@@ -9,11 +10,13 @@ import { ProductService } from '../services/product/product.service';
 export class ProductStateService {
   private products$ = new BehaviorSubject<Product[]>([]);
   private productService = inject(ProductService);
+  private toastService = inject(ToastrService);
   private filter: ProductFilter = {
     name: '',
     categoryId: 0,
   }
 
+  
   loadProducts() {
     this.productService.getProducts(this.filter).pipe(take(1)).subscribe(products => this.setProducts(products));
   }
@@ -42,6 +45,11 @@ export class ProductStateService {
   }
 
   deleteProduct(productId: number) {
-    this.productService.delete(productId).pipe(take(1)).subscribe(products => this.loadProducts());
+    this.productService.delete(productId).pipe(take(1)).subscribe((result) => {
+        if(result){
+            this.toastService.success('Produto excluído com sucesso!');
+            this.loadProducts()
+        }
+    });
   }
 }

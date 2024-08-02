@@ -14,6 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ProductStateService } from '../../store/product-state-service';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-product',
@@ -28,40 +29,26 @@ import { ProductStateService } from '../../store/product-state-service';
     MatCardModule,
     MatTooltipModule,
     MatDialogModule,
-    ToastrModule
+    ToastrModule,
   ],
   templateUrl: './product.component.html',
-  styleUrl: './product.component.scss'
+  styleUrl: './product.component.scss',
 })
 export class ProductComponent {
-
   products: Product[] = [];
 
-  constructor(
-    public dialog: MatDialog
-  ) {}
+  constructor(public dialog: MatDialog, private toastService: ToastrService) {}
 
   private productStateService = inject(ProductStateService);
   protected products$ = this.productStateService.getProducts();
+  private productService = inject(ProductService);
 
   openConfirmationDialog(productId: number): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent);
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.deleteProduct(productId);
-      }
-    });
-  }
-
-  openEditDialog(product: Product): void {
-    const dialogRef = this.dialog.open(ProductDialogComponent, {
-      data: { product: { ...product } }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.updateProduct(result);
       }
     });
   }
@@ -70,8 +57,29 @@ export class ProductComponent {
     this.productStateService.deleteProduct(productId);
   }
 
-  updateProduct(updatedProduct: Product): void {
-    console.log('updateProduct', updatedProduct);
+  openDialogForEdit(product: Product) {
+    this.dialog
+      .open(ProductDialogComponent, {
+        data: {
+          product: product,
+          title: 'Editar Produto',
+          submitFn: (updatedProduct: Product) =>
+            this.onEditSubmit(updatedProduct),
+        },
+      })
+      .afterClosed()
+      .subscribe(() => {
+        this.productStateService.loadProducts();
+      });
   }
 
+  onEditSubmit(product: Product) {
+    this.productService
+      .update(product)
+      .pipe(take(1))
+      .subscribe((result) => {
+        if (result)
+          this.toastService.success('Produto atualizado com sucesso!');
+      });
+  }
 }

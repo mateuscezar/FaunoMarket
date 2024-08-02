@@ -16,6 +16,7 @@ namespace Fauno.Service
             CreateMap<UserDto, User>().ForMember(dest => dest.PasswordHash, opt => opt.Ignore());
             CreateMap<ProductDto, Product>().ReverseMap();
             CreateMap<ProductPutDto, Product>().ReverseMap();
+            CreateMap<ProductCreateDto, Product>().ReverseMap();
             CreateMap<ProductCategoryDto, ProductCategory>().ReverseMap();
         }
     }

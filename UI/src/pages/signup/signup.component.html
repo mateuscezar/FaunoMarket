@@ -16,7 +16,7 @@
         required
         maxlength="150"
       />
-      @if (signupForm.controls['nome'].invalid &&
+      @if (signupForm.controls['nome'] && signupForm.controls['nome'].invalid &&
       (signupForm.controls['nome'].touched || formSubmitted)) {
       <mat-error> Nome é obrigatório </mat-error>
       }
@@ -33,8 +33,8 @@
         email
         maxlength="150"
       />
-      @if (signupForm.controls['email'].invalid &&
-      (signupForm.controls['email'].touched || formSubmitted)) {
+      @if (signupForm.controls['email'] &&signupForm.controls['email'].invalid
+      && (signupForm.controls['email'].touched || formSubmitted)) {
       <mat-error> Email é obrigatório e deve ser válido </mat-error>
       }
     </mat-form-field>
@@ -50,7 +50,8 @@
         minlength="6"
         maxlength="150"
       />
-      @if (signupForm.controls['password'].invalid &&
+      @if (signupForm.controls['password'] &&
+      signupForm.controls['password'].invalid &&
       (signupForm.controls['password'].touched || formSubmitted)) {
       <mat-error>
         Senha é obrigatória e deve ter no mínimo 6 caracteres
@@ -68,11 +69,13 @@
         required
         maxlength="150"
       />
-      @if (signupForm.controls['passwordConfirm'].invalid &&
+      @if (signupForm.controls['passwordConfirm'] &&
+      signupForm.controls['passwordConfirm'].invalid &&
       !signupForm.controls['passwordConfirm'].value &&
       (signupForm.controls['passwordConfirm'].touched || formSubmitted)) {
       <mat-error> Confirmação de senha é obrigatória </mat-error>
-      } @if (signupForm.controls['passwordConfirm'].touched &&
+      } @if (signupForm.controls['passwordConfirm'] &&
+      signupForm.controls['passwordConfirm'].touched &&
       signupForm.controls['passwordConfirm'].hasError('passwordMismatch')) {
       <mat-error> As senhas não coincidem </mat-error>
       }

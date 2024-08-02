@@ -14,7 +14,7 @@ namespace Fauno.Service.ApplicationService
 
         }
 
-        public async Task<ActionResponse> Create(ProductDto dto)
+        public async Task<ActionResponse> Create(ProductCreateDto dto)
         {
             VerifyExists(dto, "Dados");
 

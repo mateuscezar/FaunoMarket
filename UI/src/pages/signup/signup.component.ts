@@ -7,7 +7,7 @@ import { FormsModule, NgForm, NgModel, ValidatorFn, AbstractControl, ValidationE
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ToastrService } from 'ngx-toastr';
-import { CommonModule } from '@angular/common';  // Importando CommonModule
+import { CommonModule } from '@angular/common'; 
 import { LoginService } from '../../services/login/login.service';
 
 @Component({

@@ -9,32 +9,40 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class LoginService {
 
+  private readonly AUTH_URL = '/auth';
+  private readonly USER_URL = '/user';
+
   constructor(private httpClient: HttpClient, private toastService: ToastrService) { }
 
   login(email: string, password: string) {
-    return this.httpClient.post<LoginResponse>("/auth/login", { email, password }).pipe(
-      tap((value) => {
-        sessionStorage.setItem("auth-token", value.token);
-        sessionStorage.setItem("auth-name", value.name);
-        sessionStorage.setItem("auth-email", value.email);
-      }),
-      catchError(error => {
-        return throwError(() => new Error(error?.error?.Message || 'Erro desconhecido'));
-      })
+    return this.httpClient.post<LoginResponse>(`${this.AUTH_URL}/login`, { email, password }).pipe(
+      tap(this.handleLoginResponse.bind(this)),
+      catchError(this.handleError.bind(this))
     );
   }
 
   signup(name: string, email: string, password: string) {
-    return this.httpClient.post<ActionResponse>("/user", { name, email, password }).pipe(
-      map(value => {
-        if (!value.success) {
-          throw new Error(value.message || 'Erro desconhecido');
-        }
-        return value.message;
-      }),
-      catchError(error => {
-        return throwError(() => new Error(!!error?.error?.Message ? error?.error?.Message : (!!error.message ? error.message : 'Erro desconhecido')));
-      })
+    return this.httpClient.post<ActionResponse>(this.USER_URL, { name, email, password }).pipe(
+      map(this.handleActionResponse.bind(this)),
+      catchError(this.handleError.bind(this))
     );
+  }
+
+  private handleLoginResponse(response: LoginResponse) {
+    sessionStorage.setItem("auth-token", response.token);
+    sessionStorage.setItem("auth-name", response.name);
+    sessionStorage.setItem("auth-email", response.email);
+  }
+
+  private handleActionResponse(response: ActionResponse) {
+    if (!response.success) {
+      throw new Error(response.message || 'Erro desconhecido');
+    }
+    return response.message;
+  }
+
+  private handleError(error: any) {
+    const errorMessage = error?.error?.Message || error?.message || 'Erro desconhecido';
+    return throwError(() => new Error(errorMessage));
   }
 }

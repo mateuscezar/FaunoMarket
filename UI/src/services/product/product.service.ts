@@ -1,57 +1,64 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, map, tap, throwError } from 'rxjs';
-import { ActionResponse, LoginResponse } from '../../types/login-response.types';
+import { catchError, map, throwError } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
-import { ProductFilter } from '../../types/home.types';
+import { ActionResponse } from '../../types/login-response.types';
+import { Product, ProductFilter } from '../../types/home.types';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
+  private readonly BASE_URL = '/product';
+
   constructor(private httpClient: HttpClient, private toastService: ToastrService) { }
 
   getCategories() {
     return this.httpClient.get<ActionResponse>("/productcategory").pipe(
-      map(value => {
-        if (!value.success) {
-          throw new Error(value.message || 'Erro desconhecido');
-        }
-        return value.data;
-      }),
-      catchError(error => {
-        return throwError(() => new Error(!!error?.error?.Message ? error?.error?.Message : (!!error.message ? error.message : 'Erro desconhecido')));
-      })
+      map(this.handleResponse.bind(this)),
+      catchError(this.handleError.bind(this))
     );
   }
 
   getProducts(filter: ProductFilter) {
-    return this.httpClient.post<ActionResponse>("/product/filter", filter).pipe(
-      map(value => {
-        if (!value.success) {
-          throw new Error(value.message || 'Erro desconhecido');
-        }
-        return value.data;
-      }),
-      catchError(error => {
-        return throwError(() => new Error(!!error?.error?.Message ? error?.error?.Message : (!!error.message ? error.message : 'Erro desconhecido')));
-      })
+    return this.httpClient.post<ActionResponse>(`${this.BASE_URL}/filter`, filter).pipe(
+      map(this.handleResponse.bind(this)),
+      catchError(this.handleError.bind(this))
     );
   }
 
   delete(productId: number) {
-    return this.httpClient.delete<ActionResponse>(`/product/${productId}`).pipe(
-      map(value => {
-        if (!value.success) {
-          throw new Error(value.message || 'Erro desconhecido');
-        }
-        return value.data;
-      }),
-      catchError(error => {
-        return throwError(() => new Error(!!error?.error?.Message ? error?.error?.Message : (!!error.message ? error.message : 'Erro desconhecido')));
-      })
+    return this.httpClient.delete<ActionResponse>(`${this.BASE_URL}/${productId}`).pipe(
+      map(this.handleResponse.bind(this)),
+      catchError(this.handleError.bind(this))
     );
   }
-  
+
+  update(product: Product) {
+    return this.httpClient.put<ActionResponse>(this.BASE_URL, product).pipe(
+      map(this.handleResponse.bind(this)),
+      catchError(this.handleError.bind(this))
+    );
+  }
+
+  create(product: Product) {
+    return this.httpClient.post<ActionResponse>(this.BASE_URL, product).pipe(
+      map(this.handleResponse.bind(this)),
+      catchError(this.handleError.bind(this))
+    );
+  }
+
+  private handleResponse(response: ActionResponse) {
+    if (!response.success) {
+      throw new Error(response.message || 'Erro desconhecido');
+    }
+    return response.data ?? response.success;
+  }
+
+  private handleError(error: any) {
+    const errorMessage = error?.error?.Message || error?.message || 'Erro desconhecido';
+    this.toastService.error(errorMessage);
+    return throwError(() => new Error(errorMessage));
+  }
 }
