@@ -2,60 +2,8 @@
 
 body {
   background: $gray-bg;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
-
-.header {
-  background: $title-color;
-  color: $gray-bg;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 1rem;
-
-  .logo img {
-    width: 100px;
-    padding-right: 1rem;
-  }
-
-  div.search {
-    width: 50rem;
-    height: 80px;
-    margin: 0px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    .mat-mdc-form-field {
-      display: flex;
-      margin: 0px;
-      padding: 0px;
-      flex-grow: 1;
-      height: 56px;
-      border-radius: 5px;
-      background-color: $gray-bg;
-
-      input {
-        font-size: 18px;
-        color: $text-color;
-      }
-    }
-
-    .closeSearch {
-      color: $title-color;
-    }
-  }
-
-  div.icons {
-    display: flex;
-    padding-left: 1rem;
-    align-items: center;
-    justify-content: space-evenly;
-    color: #fff;
-    font-size: 12px;
-  }
-}
-
 
 .banner {
   display: flex;
@@ -71,59 +19,8 @@ body {
   letter-spacing: 40px;
 }
 
-
 .main-content {
   padding: 2rem;
   flex: 1;
   background: $gray-bg;
 }
-
-.category-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
-  color: $text-color;
-  font-size: 10px;
-}
-
-.category-item {
-  display: flex;
-  align-items: center;
-  padding: 1rem;
-  transition: all 0.3s;
-  border-bottom: 2px solid transparent;
-  cursor: pointer;
-
-  &:hover {
-    border-bottom: 2px solid $title-color;
-    transform: scale(1.05);
-  }
-}
-
-.category-item mat-icon {
-  margin-right: 0.5rem;
-}
-
-@media (max-width: 600px) {
-  .category-item {
-    flex: 1 1 100%;
-    justify-content: center;
-  }
-}
-
-@media (min-width: 601px) and (max-width: 960px) {
-  .category-item {
-    flex: 1 1 45%;
-  }
-}
-
-@media (min-width: 961px) {
-  .category-container {
-    justify-content: center;
-  }
-  .category-item {
-    flex: 0 0 auto;
-  }
-}
-

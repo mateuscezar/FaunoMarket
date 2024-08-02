@@ -1,0 +1,11 @@
+<div class="category-container">
+    @for (category of categories$ | async; track $index) {
+    <div class="category-item">
+      <mat-icon>{{ category.icon }}</mat-icon>
+      <span>{{ category.name }}</span>
+    </div>
+    }
+    @empty {
+      <p>Nenhuma categoria cadastrada.</p>
+    }
+  </div>

@@ -1,0 +1,52 @@
+@import "../../styles/variables.scss";
+
+.header {
+  background: $title-color;
+  color: $gray-bg;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+
+  .logo img {
+    width: 100px;
+    padding-right: 1rem;
+  }
+
+  div.search {
+    width: 50rem;
+    height: 80px;
+    margin: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .mat-mdc-form-field {
+      display: flex;
+      margin: 0px;
+      padding: 0px;
+      flex-grow: 1;
+      height: 56px;
+      border-radius: 5px;
+      background-color: $gray-bg;
+
+      input {
+        font-size: 18px;
+        color: $text-color;
+      }
+    }
+
+    .closeSearch {
+      color: $title-color;
+    }
+  }
+
+  div.icons {
+    display: flex;
+    padding-left: 1rem;
+    align-items: center;
+    justify-content: space-evenly;
+    color: #fff;
+    font-size: 12px;
+  }
+}
