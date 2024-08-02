@@ -29,9 +29,6 @@ CREATE TABLE [product] (
 );
 GO
 
-INSERT INTO [user] (Name, Email, PasswordHash) VALUES ('Admin', 'admin@fauno.com', '21232f297a57a5a743894a0e4a801fc3');
-GO
-
 INSERT INTO product_category (Icon, Name) VALUES ('local_drink', 'Bebidas');
 INSERT INTO product_category (Icon, Name) VALUES ('restaurant_menu', 'Carnes e Frios');
 INSERT INTO product_category (Icon, Name) VALUES ('grass', 'Hortifruti');
