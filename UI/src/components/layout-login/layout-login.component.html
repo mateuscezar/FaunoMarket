@@ -6,7 +6,7 @@
     <h2>{{titleLayout}}</h2>
     <ng-content></ng-content>
     <div class="btn-wrapper">
-      <button mat-flat-button class="btn-primary" (click)="submit()">
+      <button mat-flat-button class="btn-primary" type="submit" (click)="submit()">
         {{primaryBtnText}}
       </button>
       <div class="divider">
@@ -20,6 +20,9 @@
     </div>
   </section>
   <section class="main-section">
-    <img src="/assets/svg/main-illustration.svg" width="320" />
+    <div class="illustration-container">
+      <img src="/assets/svg/main-illustration.svg" width="320" />
+    </div>
+    
   </section>
 </main>

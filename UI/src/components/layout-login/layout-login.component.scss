@@ -5,8 +5,8 @@ main {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  height: 100%;
-  background-color: white;
+  flex: 1;
+  background-color: $gray-bg;
 
   section {
     height: 100%;
@@ -19,12 +19,14 @@ main {
   .main-section {
     gap: 8px;
     flex-grow: 1;
-    background-color: $gray-bg;
+    
   }
 
   .form-section {
     flex-grow: 0.3;
     padding: 0 35px;
+    background-color: white;
+    min-height: 100vh;
 
     img {
       margin-bottom: 30px;

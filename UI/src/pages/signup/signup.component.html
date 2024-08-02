@@ -5,7 +5,7 @@
   (navigate)="navigate()"
   (submit)="submit()"
 >
-  <form #signupForm="ngForm">
+  <form #signupForm="ngForm" (ngSubmit)="submit()">
     <mat-form-field>
       <mat-label>Nome</mat-label>
       <input

@@ -5,7 +5,7 @@
   (navigate)="navigate()"
   (submit)="submit()"
 >
-  <form class="example-form" #loginForm="ngForm">
+  <form class="example-form" #loginForm="ngForm" (ngSubmit)="submit()">
     <mat-form-field>
       <mat-label>Email</mat-label>
       <input
