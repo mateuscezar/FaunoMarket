@@ -39,5 +39,19 @@ export class ProductService {
       })
     );
   }
+
+  delete(productId: number) {
+    return this.httpClient.delete<ActionResponse>(`/product/${productId}`).pipe(
+      map(value => {
+        if (!value.success) {
+          throw new Error(value.message || 'Erro desconhecido');
+        }
+        return value.data;
+      }),
+      catchError(error => {
+        return throwError(() => new Error(!!error?.error?.Message ? error?.error?.Message : (!!error.message ? error.message : 'Erro desconhecido')));
+      })
+    );
+  }
   
 }

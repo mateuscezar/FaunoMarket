@@ -40,4 +40,8 @@ export class ProductStateService {
     const currentProducts = this.products$.value;
     this.products$.next([...currentProducts, product]);
   }
+
+  deleteProduct(productId: number) {
+    this.productService.delete(productId).pipe(take(1)).subscribe(products => this.loadProducts());
+  }
 }

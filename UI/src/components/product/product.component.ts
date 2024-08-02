@@ -38,8 +38,6 @@ export class ProductComponent {
   products: Product[] = [];
 
   constructor(
-    private productService: ProductService,
-    private toastService: ToastrService,
     public dialog: MatDialog
   ) {}
 
@@ -69,34 +67,11 @@ export class ProductComponent {
   }
 
   deleteProduct(productId: number): void {
-    console.log('deleteProduct', productId);
-    // this.productService.deleteProduct(productId).subscribe({
-    //   next: () => {
-    //     this.products = this.products.filter(p => p.id !== productId);
-    //     this.toastService.success('Produto excluído com sucesso');
-    //   },
-    //   error: (error) =>
-    //     this.toastService.error(
-    //       error.message ?? 'Erro ao excluir o produto'
-    //     ),
-    // });
+    this.productStateService.deleteProduct(productId);
   }
 
   updateProduct(updatedProduct: Product): void {
     console.log('updateProduct', updatedProduct);
-    // this.productService.updateProduct(updatedProduct).subscribe({
-    //   next: (product) => {
-    //     const index = this.products.findIndex(p => p.id === product.id);
-    //     if (index !== -1) {
-    //       this.products[index] = product;
-    //       this.toastService.success('Produto atualizado com sucesso');
-    //     }
-    //   },
-    //   error: (error) =>
-    //     this.toastService.error(
-    //       error.message ?? 'Erro ao atualizar o produto'
-    //     ),
-    // });
   }
 
 }
