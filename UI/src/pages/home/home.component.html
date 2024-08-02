@@ -1,7 +1,6 @@
 <app-header />
 
 <main class="main-content">
-  
   <app-category />
   <hr />
 
@@ -9,7 +8,13 @@
   <!-- <div class="banner">BANNER</div> -->
 
   <app-product />
-  <button mat-fab class="floating-action-button" (click)="onAdd()">
+  <button
+    mat-fab
+    class="floating-action-button"
+    matTooltipPosition="left"
+    matTooltip="Cadastrar Produto"
+    (click)="onAdd()"
+  >
     <mat-icon>add</mat-icon>
   </button>
 </main>

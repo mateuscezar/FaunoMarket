@@ -15,6 +15,7 @@ import { CategoryStateService } from '../../store/category-state-service';
 import { ProductService } from '../../services/product/product.service';
 
 import { Product } from '../../types/home.types';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-home',
@@ -25,6 +26,7 @@ import { Product } from '../../types/home.types';
     CategoryComponent,
     HeaderComponent,
     MatIconModule,
+    MatTooltipModule
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
@@ -68,7 +70,7 @@ export class HomeComponent implements OnInit {
       }
     });
   }
-  
+
   private onCreateSubmit(product: Product): void {
     this.productService.create(product).pipe(take(1)).subscribe(result => {
       if (result) {
