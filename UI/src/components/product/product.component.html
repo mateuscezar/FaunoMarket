@@ -36,7 +36,10 @@
   </mat-card>
 
   } @empty {
-  <p>Nenhum produto encontrado.</p>
+    <div class="no-products">
+        <mat-icon class="no-products-icon">search_off</mat-icon>
+        <p class="no-products-text">Nenhum produto encontrado</p>
+      </div>
   }
 </div>
 } @placeholder {
