@@ -3,10 +3,11 @@ import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/c
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { LoadingStateService } from '../store/loading-state-service';
+import { environment } from '../config/environment';
 
 @Injectable()
 export class HttpBaseUrlInterceptor implements HttpInterceptor {
-  private readonly baseUrl = 'http://localhost:5000';
+  private readonly baseUrl = environment.apiUrl;
 
   constructor(private loadingStateService: LoadingStateService) {}
 
