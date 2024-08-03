@@ -74,3 +74,25 @@ export const environment = {
   ```
 
 - O frontend estará disponível em [http://localhost:4200](http://localhost:4200).
+
+## Arquitetura do projeto
+
+1. **Backend**
+  - Foi escolhido criar a estrutura do projeto no padrão **DDD**, este padrão, consiste em segmentar seu projeto em camadas, separando assim a responsabilidade de cada uma, facilitando o entendimento e evolução do sistema. Para este projeto as camadas ficaram assim:
+     - **Fauno.API**
+        - É o projeto padrão de inicialização, é o primeiro a receber requisições RESTFULL, para isso os controllers são definidos aqui. Por ser responsável em receber a requisição, a validação de token JWT é executada aqui.
+     - **Fauno.CrossCutting**
+        - Basicamente todos os demais projetos vão ter referência a este. Neste projeto o seu objetivo é armazerar DTOs (Data Transfer Objects), onde um dos principais uso nesse projeto é criar classes contendo apenas as propriedades necessárias para cada utilização (Ex: Um controller tem o costume de devolver o resultado, quando existente, em um JSON contendo apenas o que será útil a quem o consumir).
+     - **Fauno.Domain**
+        - Seu objetivo é armazenar classes que representam entidades do banco. De forma mais direta, as tabelas do SQL Server desse projeto são mapeadas em classes com propriedades e até relacionamentos aqui.
+     - **Fauno.Infrastructure**
+        - Já nessa camada, seu objetivo é realizar a comunicação com a base de dados. Neste projeto, como utilizamos do ORM Entity Framework, juntamente com UnitOfWork e Repository, então nosso Contexto, juntamente com UnitOfWork (Singleton garantindo uma instância única com acesso a repositórios do contexto), e o Repository (classe onde centraliza, através do entity framework, métodos de acesso, filtragem e manutenção que são aplicados na base de dados.
+     - **Fauno.Service**
+        - Aqui é onde a mágica acontece do DDD. A centralização de toda regra de negócio em uma camada exclusiva. Normalmente é chamada pela camada de API, e tem a responsabilidade de processar a regra e devolver um resultado esperado, ou um erro caso a regra quebre. Por precisar constantemente de transferir um objeto de um tipo para outro, por conta de não poder retornar um Db, foi adicionada a biblioteca AutoMapper que facilita muito tanto o entendimento do código, quando a facilidade na conversão de tipos.
+     - **Fauno.Tests**
+        - Responsável por realizar testes dos principais métodos, utilizando da biblioteca **xunit**, neste projeto referente ao **Fauno.Service** que são métodos que garantem a integridade da regra de negócio.
+      
+  - Todo projeto utiliza da injeção de dependência padrão do .Net Core 8.0.
+
+2. **Frontend**
+  - TODO
