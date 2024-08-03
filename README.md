@@ -79,6 +79,43 @@ export const environment = {
 
 No arquivo localizado em **`.github/workflows/ci-cd.yml`** esta configurado um CI/CD básico onde é executado o build de ambos, e os testes do backend.
 
+## Guia de uso da aplicação
+
+Ao acessar a rota, automaticamente será redirecionado para página de login, onde caso já tenha um cadastro, é possível efetuar o login clicando no botão **`Entrar`**, ou caso contrário, é necessário clicar no botão **`Cadastrar`**.
+![image](https://github.com/user-attachments/assets/68778c95-191d-4b3a-ac18-90f63efeb377)
+
+Caso clique em "Cadastrar", será redirecionado para uma página onde é possível realizar seu cadastro informando alguns campos básicos.
+![image](https://github.com/user-attachments/assets/b89b2aa3-6f5c-4a78-b924-660ffe35c064)
+
+Após realizado o login, será redirecionado para página "home", onde é possível realizar todo CRUD solicitado
+![image](https://github.com/user-attachments/assets/4532d9ff-24c2-4a1e-986b-80cdac16d31d)
+
+### Listagem e filtros
+É possível filtrar o nome do produto pelo campo localizado no cabeçalho da página.
+Também é possível filtrar as categorias, clicando na categoria desejada, logo abaixo do cabeçalho. (Caso a categoria já esteja selecionada e clicar novamente, é removido o filtro daquela categoria).
+
+### Cadastro
+Para cadastrar um novo produto, basta clicar no botão "+" flutuante no canto inferior direito da tela, assim irá abrir uma modal para informar os dados do produto a ser cadastrado.
+![image](https://github.com/user-attachments/assets/9f4addf5-fc18-4883-8247-2c5c1ad61fa1)
+
+### Edição
+Para editar um produto, basta clicar no ícone cujo tooltip informar "Editar" no canto superior direito de cada produto.
+![image](https://github.com/user-attachments/assets/b5066413-5ac3-4b4d-9ade-5231b5760bdd)
+
+### Remoção
+Para editar um produto, basta clicar no ícone cujo tooltip informar "Excluir" no canto superior direito de cada produto.
+![image](https://github.com/user-attachments/assets/d018bc4b-588f-4187-8125-df5150652ca5)
+
+### Responsividade
+A tela foi desenvolvida se preocupando com a responsividade, portanto ela se ajusta e pode modificar de acordo com a resolução.
+![image](https://github.com/user-attachments/assets/659dc465-5a06-4489-940e-8593eb597cbe)
+
+
+## Exemplos de requisições a APIs
+![image](https://github.com/user-attachments/assets/c7ed3103-8d90-4c95-8b87-c605a56fed87)
+![image](https://github.com/user-attachments/assets/6730bcdd-7e1b-4a66-81bd-c1c457578286)
+
+
 ## Decisões de Arquitetura e Padrões Utilizados
 
 ### Backend
@@ -150,6 +187,7 @@ O backend foi estruturado utilizando alguns dos padrões de projetos que mais at
 
 A estrutura do frontend foi pensada de maneira que facilite a navegação e manutenção do código, assegurando que cada parte da aplicação tenha sua responsabilidade definida.
 Foram utilizadas algumas das novidades com o uso do angular 17, assim como tratamento de lazyloading, rxjs, novos signals (@if, @else, @for, @empty, @defer).
+Vale lembrar que nesse projeto foi utilizado Angular Material.
 Segue alguns dos padrões utilizados neste projeto:
 
    #### 1. **Component-Based Architecture**
