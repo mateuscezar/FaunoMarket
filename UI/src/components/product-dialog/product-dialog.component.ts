@@ -11,6 +11,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import {MatSelectModule} from '@angular/material/select';
 
 import { CommonModule } from '@angular/common';
+import { CurrencyMaskModule } from "ng2-currency-mask";
 import { CategoryStateService } from '../../store/category-state-service';
 
 @Component({
@@ -25,7 +26,8 @@ import { CategoryStateService } from '../../store/category-state-service';
     MatIconModule,
     MatCardModule,
     MatTooltipModule,
-    MatSelectModule
+    MatSelectModule,
+    CurrencyMaskModule
   ],
   templateUrl: './product-dialog.component.html',
   styleUrl: './product-dialog.component.scss'
@@ -58,17 +60,9 @@ export class ProductDialogComponent {
     }
   }
 
-  formatAndValidatePrice(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    const value = input.value;
-
-    const regex = /^\d*\.?\d{0,2}$/;
-
-    if (regex.test(value)) {
-      this.data.product.price = parseFloat(value) || 0;
-      input.value = this.data.product.price.toFixed(2);;
-    } else {
-      input.value = this.data.product.price.toFixed(2);;
+  onPriceBlur(): void {
+    if (this.data.product.price !== null && this.data.product.price !== undefined) {
+      this.data.product.price = parseFloat(this.data.product.price.toFixed(2));
     }
   }
 }

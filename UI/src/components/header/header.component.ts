@@ -43,7 +43,7 @@ export class HeaderComponent implements OnInit {
       debounceTime(500),
       distinctUntilChanged(),
     ).subscribe((results) => {
-      this.productStateService.filterName(results)
+      this.productStateService.filterName(results);
     });
   }
 

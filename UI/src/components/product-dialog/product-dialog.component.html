@@ -41,7 +41,8 @@
         >
           @for (category of categories$ | async; track $index) {
           <mat-option [value]="category.id">
-            {{ category.name }}
+            <mat-icon>{{ category.icon }}</mat-icon>
+            <span>{{ category.name }}</span>
           </mat-option>
           } @empty {
           <mat-option> Nenhuma categoria </mat-option>
@@ -54,21 +55,29 @@
 
       <mat-form-field appearance="fill">
         <mat-label>Preço</mat-label>
+
         <input
           matInput
-          [(ngModel)]="data.product.price"
-          name="price"
-          type="number"
           required
-          max="999999"
-          min="0"
-          step="0.01"
+          name="price"
+          currencyMask
+          [max]="999999"
+          [min]="0.01"
+          [(ngModel)]="data.product.price"
+          [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align: 'left' }"
           #price="ngModel"
-          (input)="formatAndValidatePrice($event)"
         />
-        @if (price.invalid && price.touched) {
+        @if (price.errors && price.errors['required'] &&
+        price.touched) {
         <mat-error>Preço é obrigatório.</mat-error>
+        } @else if (price.errors && price.errors['min'] &&
+        price.touched) {
+        <mat-error>O preço não pode ser menor que 0.</mat-error>
+        } @else if (price.errors && price.errors['max'] &&
+        price.touched) {
+        <mat-error>O preço não pode ser maior que 999.999.</mat-error>
         }
+
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Quantidade em Estoque</mat-label>

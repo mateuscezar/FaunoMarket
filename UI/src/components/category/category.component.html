@@ -9,3 +9,20 @@
       <p>Nenhuma categoria cadastrada.</p>
     }
   </div>
+  <div class="mobile-category-container">
+    <button mat-button [matMenuTriggerFor]="beforeMenu">Categorias</button>
+<mat-menu #beforeMenu="matMenu" xPosition="before">
+  @for (category of categories$ | async; track $index) {
+    <button mat-menu-item>
+      <div class="category-item" [class.selected]="category.selected" (click)="onClickCategory(category)">
+        <mat-icon>{{ category.icon }}</mat-icon>
+        <span>{{ category.name }}</span>
+      </div>
+    </button>
+    
+  }
+  @empty {
+    <button mat-menu-item>Nenhuma</button>
+  }
+</mat-menu>
+  </div>

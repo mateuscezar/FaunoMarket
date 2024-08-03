@@ -39,6 +39,11 @@ export class ProductStateService {
     this.loadProducts();
   }
 
+  clearFilter(){
+    this.filter.name = '';
+    this.filter.categoryId = 0;
+  }
+
   addProduct(product: Product) {
     const currentProducts = this.products$.value;
     this.products$.next([...currentProducts, product]);

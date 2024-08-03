@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, inject, ViewChild } from '@angular/core';
 import { LayoutLoginComponent } from '../../components/layout-login/layout-login.component';
 import { Router } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
@@ -10,6 +10,7 @@ import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
 import { LoginService } from '../../services/login/login.service';
+import { ProductStateService } from '../../store/product-state-service';
 
 @Component({
   selector: 'app-login',
@@ -36,6 +37,8 @@ export class LoginComponent {
     private toastService: ToastrService
   ) {}
 
+  private productStateService = inject(ProductStateService);
+
   submit() {
     this.formSubmitted = true;
 
@@ -44,9 +47,12 @@ export class LoginComponent {
       const password = this.loginForm.value['password'];
 
       this.loginService
-        .login(this.loginForm.value.email, this.loginForm.value.password)
+        .login(email, password)
         .subscribe({
-          next: () => this.router.navigate(['home']),
+          next: () => {
+            this.productStateService.clearFilter();
+            this.router.navigate(['home'])
+          },
           error: (error) =>
             this.toastService.error(
               error.message ?? 'Erro inesperado! Tente novamente mais tarde'
