@@ -75,6 +75,10 @@ export const environment = {
 
 - O frontend estará disponível em [http://localhost:4200](http://localhost:4200).
 
+## CI/CD
+
+No arquivo localizado em **`.github/workflows/ci-cd.yml`** esta configurado um CI/CD básico onde é executado o build de ambos, e os testes do backend.
+
 ## Decisões de Arquitetura e Padrões Utilizados
 
 ### Backend
