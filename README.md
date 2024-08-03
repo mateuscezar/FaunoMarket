@@ -33,7 +33,7 @@ O layout foi pensado para ser de fácil manuseio e amigável com o usuário, inc
    cd API
    dotnet restore
    dotnet build
-   dotnet run
+   dotnet run --project Fauno.Api
 
 ## Configuração do Frontend (Angular 17)
 
