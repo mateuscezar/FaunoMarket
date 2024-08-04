@@ -79,6 +79,11 @@ export const environment = {
 
 No arquivo localizado em **`.github/workflows/ci-cd.yml`** esta configurado um CI/CD básico onde é executado o build de ambos, e os testes do backend.
 
+## Apresentação em slides
+
+Criei uma breve [apresentação em slides](https://docs.google.com/presentation/d/1AV0K5VY0FXZ1Ny1Y3eQDtRr6t9NqdGW8Bd9D8jnBRuI/edit?usp=sharing), para facilitar o entendimento no momento da apresentação do projeto.
+
+
 ## Guia de uso da aplicação
 
 Ao acessar a rota, automaticamente será redirecionado para página de login, onde caso já tenha um cadastro, é possível efetuar o login clicando no botão **`Entrar`**, ou caso contrário, é necessário clicar no botão **`Cadastrar`**.
@@ -223,10 +228,10 @@ Segue alguns dos padrões utilizados neste projeto:
    - **Exemplos:** `http-base-url.interceptor.ts`.
    
    #### 9. **Styling Conventions**
-   - Utilização de arquivos SASS para gerenciamento de estilos, incluindo variáveis globais para cores, tamanhos, etc.
+   - Utilização de arquivos SCSS para gerenciamento de estilos, incluindo variáveis globais para cores, tamanhos, etc.
    - **Exemplos:** `variables.scss`.
    
-   #### 10. **Lazy Loading (Potencialmente)**
+   #### 10. **Lazy Loading**
    - Foi criado uma demonstração da potência do lazyloading que veio com o angular17 através dos signals @defer.
    - **Exemplos:** `product.component.html`.
    
