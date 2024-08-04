@@ -68,9 +68,12 @@ export const environment = {
   npm install
   ```
 
-- Inicie o servidor de desenvolvimento Angular:
+- Inicie o servidor de desenvolvimento Angular, pode usar qualquer um dos seguintes comandos:
   ```bash
+  npm start
+  npm run start
   ng serve
+  yarn start
   ```
 
 - O frontend estará disponível em [http://localhost:4200](http://localhost:4200).
@@ -125,7 +128,7 @@ A tela foi desenvolvida se preocupando com a responsividade, portanto ela se aju
 
 ### Backend
 
-### Padrões Utilizados no Backend
+### Recursos/Padrões Utilizados no Backend
 
 O backend foi estruturado utilizando alguns dos padrões de projetos que mais atuei ao longo da minha carreira, vou mencionar os utilizados nesse projeto:
 
@@ -138,7 +141,7 @@ O backend foi estruturado utilizando alguns dos padrões de projetos que mais at
    - **Exemplos:** Classes que terminam com 'Repository' no projeto `Fauno.Infrastructure`.
    
    #### 3. **Unit of Work Pattern**
-   - Implementação do padrão Unidade de Trabalho para gerenciar transações e manter a integridade do banco de dados ao executar operações múltiplas.
+   - Implementação desse padrçao para gerenciar transações e manter a integridade do banco de dados ao executar operações múltiplas.
    - **Exemplos:** Classe `UnitOfWork` no projeto `Fauno.Infrastructure`.
    
    #### 4. **Dependency Injection**
@@ -188,7 +191,7 @@ O backend foi estruturado utilizando alguns dos padrões de projetos que mais at
    #### Fauno.Tests
    - Responsável por realizar testes dos principais métodos, utilizando a biblioteca **xUnit**. Neste projeto, os testes se concentram no **Fauno.Service**, garantindo a integridade das regras de negócio.
    
-### Padrões Utilizados no Frontend
+### Recursos/Padrões Utilizados no Frontend
 
 A estrutura do frontend foi pensada de maneira que facilite a navegação e manutenção do código, assegurando que cada parte da aplicação tenha sua responsabilidade definida.
 Foram utilizadas algumas das novidades com o uso do angular 17, assim como tratamento de lazyloading, rxjs, novos signals (@if, @else, @for, @empty, @defer).
@@ -211,31 +214,27 @@ Segue alguns dos padrões utilizados neste projeto:
    - A injeção de dependencia nesse projeto foram realizadas de 2 maneiras, a primeira injetando direto na propriedade **`imports`** na definição de cada componente, e também em alguns casos (principalmente com services e store), são injetados com o **`inject`** do @angular/core, onde basta apenas realizar a chamada do método inject, sem necessidade de declarar no construtor.
    - **Exemplos:** Injeção de serviços nos componentes e outros serviços.
    
-   #### 5. **Reactive Programming**
-   - Utilização de Observables do RxJS para lidar com operações assíncronas e eventos.
-   - **Exemplos:** Métodos nos serviços que retornam `Observable` e utilizam operadores como `pipe`, `map`, `catchError`.
-   
-   #### 6. **Environment Configuration**
+   #### 5. **Environment Configuration**
    - Separar a configuração do ambiente, como URLs de API, em arquivos específicos para facilitar a gestão de diferentes ambientes (desenvolvimento, produção, etc.).
    - **Exemplos:** `environment.ts` na pasta `config`.
    
-   #### 7. **Guards**
+   #### 6. **Guards**
    - Utilização de guards para proteger rotas e verificar permissões antes de permitir o acesso a determinadas partes da aplicação.
    - **Exemplos:** `auth.guard.ts`.
    
-   #### 8. **Interceptors**
+   #### 7. **Interceptors**
    - Utilização de interceptors para modificar ou inspecionar requisições HTTP antes que elas sejam enviadas e respostas HTTP antes que elas sejam processadas pelo restante da aplicação.
    - **Exemplos:** `http-base-url.interceptor.ts`.
    
-   #### 9. **Styling Conventions**
-   - Utilização de arquivos SCSS para gerenciamento de estilos, incluindo variáveis globais para cores, tamanhos, etc.
+   #### 8. **Styling**
+   - Utilização de arquivos SCSS para gerenciamento de estilos, incluindo variáveis globais para cores.
    - **Exemplos:** `variables.scss`.
    
-   #### 10. **Lazy Loading**
+   #### 9. **Lazy Loading**
    - Foi criado uma demonstração da potência do lazyloading que veio com o angular17 através dos signals @defer.
    - **Exemplos:** `product.component.html`.
    
-   #### 11. **Async Pipe**
+   #### 10. **Async Pipe**
    - Uso do pipe `async` em templates para assinar observáveis diretamente no HTML, simplificando o código e evitando a necessidade de subscrição manual.
    - **Exemplos:** `categories$ | async`.
 
