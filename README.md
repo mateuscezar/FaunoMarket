@@ -141,7 +141,7 @@ O backend foi estruturado utilizando alguns dos padrões de projetos que mais at
    - **Exemplos:** Classes que terminam com 'Repository' no projeto `Fauno.Infrastructure`.
    
    #### 3. **Unit of Work Pattern**
-   - Implementação desse padrçao para gerenciar transações e manter a integridade do banco de dados ao executar operações múltiplas.
+   - Implementação desse padrão para gerenciar transações e manter a integridade do banco de dados ao executar operações múltiplas.
    - **Exemplos:** Classe `UnitOfWork` no projeto `Fauno.Infrastructure`.
    
    #### 4. **Dependency Injection**
