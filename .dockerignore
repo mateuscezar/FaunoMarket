@@ -1,0 +1,14 @@
+node_modules
+.env*
+dist
+
+Dockerfile
+.dockerignore
+npm-debug.log
+
+**/node_modules
+**/node_modules
+**/build
+**/.gitignore
+**/.env*
+**/.angular
