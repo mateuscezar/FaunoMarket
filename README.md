@@ -11,6 +11,15 @@ O layout foi pensado para ser de fácil manuseio e amigável com o usuário, inc
 - [.NET Core SDK 8](https://dotnet.microsoft.com/download/dotnet/8.0)
 - [SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
 
+## Iniciando aplicação com Docker
+
+ - Caso prefira, na raiz do projeto foi criado o arquivo **`docker-compose.yaml`** com uma maneira facilitada de subir uma instância SQL Server, rodar a API e rodar o frontend. Para executar o docker basta ir na raiz do projeto e difitar o comando:
+     ```bash
+     docker-compose up
+  - Lembre de verificar se possui o docker instalado.
+  - Mesmo executando a aplicação pelo docker, será necessário rodar o script **`database.sql`** para criar a base de dados e alguns valores iniciais.
+  - Caso prefira rodar a aplicação manualmente, acompanhe as etapas abaixo ensinando como proceder.
+
 ## Configuração do Backend (.NET Core 8)
 
 1. **Instale o .NET Core 8 SDK:**
@@ -18,11 +27,6 @@ O layout foi pensado para ser de fácil manuseio e amigável com o usuário, inc
 
 2. **Configure o Banco de Dados:**
    - Certifique-se de ter uma instância do SQL Server em execução.
-   - Caso prefira, estou deixando no arquivo **`docker-compose.yaml`** uma maneira facilitada de subir uma instância SQL Server. Caso prefira subir uma instância direto pelo docker, certifique-se de possuir o docker instalado e estar no diretório raiz do projeto, então execute o comando:
-     ```bash
-     docker-compose up -d
-     
-   OBS: Lembre de alterar a senha editando este arquivo com um editor de texto, o usuário padrão é o **`sa`**.
    - Execute o script SQL `database.sql` para configurar o banco de dados necessário para a aplicação.
 
 3. **Configure a String de Conexão:**
